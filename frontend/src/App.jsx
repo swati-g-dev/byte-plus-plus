@@ -1,13 +1,41 @@
+import {createBrowserRouter, RouterProvider} from "react-router-dom"
+
+import { AppLayout } from "./components/Layout/AppLayout"
+import { About } from "./pages/About"
+import { Cards } from "./pages/Cards"
+import { Contact } from "./pages/Contact"
+import Home from "./pages/Home"
+import { ErrorPage } from "./pages/ErrorPage"
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement:<ErrorPage />,
+    children:[
+      {
+        path: "/",
+        element:<Home />,
+      },
+      {
+        path: "/about",
+        element:<About />,
+      },
+      {
+        path: "/cards",
+        element:<Cards />,
+      },
+      {
+        path: "/contact",
+        element:<Contact />,
+      },]
+  }
+  
+])
+
 function App() {
 
-  return (
-    <>
-      <main className="max-w-xl mx-auto px-4 py-8"> 
-        <h1 className="text-5xl font-bold">Byte++</h1>
-        <h2 className="text-4xl">The Coding Society of BHU</h2>
-      </main>
-    </>
-  )
+  return <RouterProvider router={router}></RouterProvider>
 }
 
 export default App
